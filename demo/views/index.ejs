@@ -1,0 +1,683 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Cultura is a Education HTML Template">
+	<meta name="keywords"
+		content="	classes, college, course, courses, educational, learning, online courses, revolution slider, school, seminar, tutorials, university, workshop">
+	<meta name="author" content="regaltheme.com">
+	<title>Online Learning</title>
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+	<!-- style css -->
+	<link rel="stylesheet" href="style.css">
+	<!-- modernizr js -->
+	<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="js/functions.js"></script>
+</head>
+
+<body onload="show('courses-section');find_courses()">
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+	<!-- Wrapper Start -->
+	<div class="wrapper">
+		<!-- Header Section Start -->
+		<header class="main-header">
+
+			<div class="top-bar">
+				<div class="container">
+					<!-- /.row -->
+				</div>
+				<!-- /.container -->
+			</div>
+			<div id="active-sticky" class="navgation-bar">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="d-flex justify-end">
+								<div class="logo mr-auto">
+									<a href="/"><img src="assets/img/logo.png" alt="" /></a>
+								</div>
+								<!-- Static navbar -->
+								<nav class="mainmenu">
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle" data-toggle="collapse"
+											data-target="#navbar">
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+											<span class="icon-bar"></span>
+										</button>
+									</div>
+									<div id="navbar" class="navbar-collapse collapse no-padding">
+										<ul class="navbar-nav dropdown">
+											<li><a onclick="show('courses-section');find_courses()">Home</a></li>
+											
+											<% if(data){ %>
+												
+											<li>
+												<a href="javascript:viod(0)" class="dropdown-toggle"
+													data-toggle="dropdown" title="Click Here">
+													Courses <i class="zmdi zmdi-chevron-down"></i>
+												</a>
+												<ul class="dropdown-menu">
+													<li><a onclick="show_registered_courses()">Registered Courses</a>
+													</li>
+													<% if(data.MaGV){ %>
+														<li><a onclick="show_my_courses()">My Courses</a></li>
+													<% } %>
+													
+												</ul>
+											</li>
+											
+
+											<li>
+												<a href="javascript:viod(0)" class="dropdown-toggle"
+													data-toggle="dropdown" title="Click Here">
+													Account <i class="zmdi zmdi-chevron-down"></i>
+												</a>
+												<ul class="dropdown-menu">
+
+
+													<!-- <li class="dropdown-submenu"><a class="hit" href="#">Gallery <i class="zmdi zmdi-chevron-right"></i></a>
+														<ul class="dropdown-menu">
+															<li><a href="gallery.html">Gallery V1</a></li>
+															<li><a href="gallery-2.html">Gallery V2</a></li>
+															<li><a href="gallery-3.html">Gallery V3</a></li>
+														</ul>
+													</li> -->
+													<!-- <li class="dropdown-submenu"><a class="hit" href="#">Events <i class="zmdi zmdi-chevron-right"></i></a>
+														<ul class="dropdown-menu">
+															<li><a href="events.html">Events V1</a></li>
+															<li><a href="events-2.html">Events V2</a></li>
+															<li><a href="event-details.html">Event Details</a></li>
+														</ul>
+													</li> -->
+
+													<!-- <li><a href="profile.html">Profile</a></li> -->
+													<li><a onclick="show_profile()">Profile</a></li>
+													<% if(data.MaGV){ %>
+													<li><a onclick="show('become-teacher-section')">Update Certificate</a>
+													</li>
+													<% } else{%>
+														<li><a onclick="show('become-teacher-section')">Become Teachers</a>
+														</li>
+														<% } %>
+													<li><a href="logout">Logout</a></li>
+													
+												</ul>
+											</li>
+											<% } else {%>
+												<li><a href="login">Login</a></li>
+													<li><a href="signup">Signup</a></li>
+												<%} %>
+										</ul>
+									</div>
+									<!--/.nav-collapse -->
+								</nav>
+								<div class="search-toggle pull-right">
+									<i class="zmdi zmdi-search"></i>
+								</div>
+								<div class="courses-searching">
+									<div class="close-search"></div>
+									<form action="#">
+										<input type="text" name="search" placeholder="Courses Search..." />
+										<button id="close" type="submit"><i class="zmdi zmdi-search"></i></button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container -->
+			</div>
+		</header>
+		<!-- Header Section End -->
+
+
+		<!-- Courses Section Start -->
+		<section class="blog-area section-padding white-bg" id="courses-section">
+			<div class="container" style="width: 100%;">
+
+				<div class="row" style="width: 1400px; margin: 0 auto;">
+					<br>
+					<h2>Danh sách khóa học:</h2>
+					<br>
+					<br>
+					<div class="col-xs-12 col-sm-8 mobi-mb-50" style="width: 70%;">
+						<div class="row courses">
+							<div class="col-xs-12 col-sm-6 mb-30">
+								<div class="blog-post blog-style2">
+									<div class="thumb text-center">
+										<a href="blog-details.html"><img src="assets/img/blog/6.jpg"
+												alt="Thumbnail Image" /></a>
+									</div>
+									<div class="blog-content">
+										<div class="rt-inner plr-35 pt-30 mb-20">
+
+											<a href="blog-details.html">
+												<h3 class="text-capitalize">Cơ sở dữ liệu</h3>
+											</a>
+											<h4 class="mb-5">20 Jun 2017</h4>
+											<p>Mô tả khóa học bla bla bla</p>
+										</div>
+										<div class="footer clearfix plr-35">
+											<div class="pull-left">
+												<h5><span>By:</span> Kuro</h5>
+											</div>
+											<div class="pull-right">
+												<h5><span>Rating:</span> 5/5</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.Post End -->
+						</div>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="rt-pagination pt-60 text-center">
+									<ul class="clearfix" id='Pagination'>
+										<li class="active">
+											<a href="javascript:render('1')">01</a>
+										</li>
+										<li><a href="javascript:render('2')">02</a></li>
+										<li><a href="javascript:render('3')">03</a></li>
+										<li><a href="javascript:render('2')"><i class="zmdi zmdi-chevron-right"></i></a>
+										</li>
+									</ul>
+								</div>
+								<!-- /.Pagination -->
+							</div>
+						</div>
+						<!-- /.row -->
+					</div>
+
+					<div class="col-xs-12 col-sm-4" style="width: 30%;">
+						<div class="sidebar white-bg">
+							<div class="widget mb-45">
+								<div class="widget-title mb-30">
+									<h5 class="mb-5">Search</h5>
+									<div class="horizontal-line">
+										<hr class="top" />
+										<hr class="bottom" />
+									</div>
+								</div>
+								<div class="search-box">
+									<form onsubmit="return find_courses();">
+										<input type="text" name="search" placeholder="Type here..." />
+										<button type="button" onclick="find_courses();"><i
+												class="zmdi zmdi-search"></i></button>
+									</form>
+								</div>
+							</div>
+							<!-- /.Search Widget End -->
+							<!-- <div class="widget mb-45">
+								<div class="widget-title mb-30">
+									<h5 class="mb-5">Categories</h5>
+									<div class="horizontal-line">
+										<hr class="top" />
+										<hr class="bottom" />
+									</div>
+								</div>
+								<div class="category">
+									<ul>
+										<li><a href="javascript:void(0)">Journey <span>(10)</span></a></li>
+										<li><a href="javascript:void(0)">Design <span>(12)</span></a></li>
+										<li><a href="javascript:void(0)">Development <span>(08)</span></a></li>
+										<li><a href="javascript:void(0)">Spotrs <span>(03)</span></a></li>
+										<li><a href="javascript:void(0)">Photography <span>(05)</span></a></li>
+										<li><a href="javascript:void(0)">Minimal <span>(07)</span></a></li>
+									</ul>
+								</div>
+							</div> -->
+							<!-- /.Categories Widget End -->
+
+
+							<div class="widget">
+								<div class="widget-title mb-30">
+									<h5 class="mb-5">Tags</h5>
+									<div class="horizontal-line">
+										<hr class="top" />
+										<hr class="bottom" />
+									</div>
+								</div>
+								<div class="tags">
+									<a href="javascript:void(0)">Education</a>
+									<a href="javascript:void(0)">Cultura</a>
+									<a href="javascript:void(0)">HTML</a>
+									<a href="javascript:void(0)">Design</a>
+									<a href="javascript:void(0)">Development</a>
+									<a href="javascript:void(0)">Music</a>
+									<a href="javascript:void(0)">CSS</a>
+									<a href="javascript:void(0)">Learning</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.Sidebar End -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- Courses Section End -->
+
+		<!-- My Courses Section Start -->
+		<section class="blog-area section-padding white-bg" id="registered-courses-section">
+			<div class="container" style="width: 100%;">
+				<div class="row" style="width: 1200px; margin: 0 auto;">
+					<br>
+					<h2>Danh sách khóa học của tôi:</h2>
+					<br>
+					<br>
+					<div class="col-xs-12 col-sm-8 mobi-mb-50" style="width: 100%;">
+						<div class="row courses">
+							<div class="col-xs-12 col-sm-6 mb-30">
+								<div class="blog-post blog-style2">
+									<div class="thumb text-center">
+										<a href="blog-details.html"><img src="assets/img/blog/6.jpg"
+												alt="Thumbnail Image" /></a>
+									</div>
+									<div class="blog-content">
+										<div class="rt-inner plr-35 pt-30 mb-20">
+
+											<a href="blog-details.html">
+												<h3 class="text-capitalize">Cơ sở dữ liệu</h3>
+											</a>
+											<h4 class="mb-5">20 Jun 2017</h4>
+											<p>Mô tả khóa học bla bla bla</p>
+										</div>
+										<div class="footer clearfix plr-35">
+											<div class="pull-left">
+												<h5><span>By:</span> Kuro</h5>
+											</div>
+											<div class="pull-right">
+												<h5><span>Rating:</span> 5/5</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.Post End -->
+
+						</div>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="rt-pagination pt-60 text-center">
+									<ul class="clearfix" id='Pagination'>
+										<li class="active">
+											<a href="javascript:render('1')">01</a>
+										</li>
+										<li><a href="javascript:render('2')">02</a></li>
+										<li><a href="javascript:render('3')">03</a></li>
+										<li><a href="javascript:render('2')"><i class="zmdi zmdi-chevron-right"></i></a>
+										</li>
+									</ul>
+								</div>
+								<!-- /.Pagination -->
+							</div>
+						</div>
+						<!-- /.row -->
+					</div>
+
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- My Courses Section End -->
+
+		<!-- Manage Courses Section Start -->
+		<section class="blog-area section-padding white-bg" id="my-courses-section">
+			<div class="container" style="width: 100%;">
+				<div class="row" style="width: 1200px; margin: 0 auto;">
+					<br>
+					<h2>Quản lí khóa học:</h2>
+					<br>
+					<button class="btn" type="button" onclick="new_course()">Thêm khóa học</button>
+					<br>
+					<br><br>
+					<div class="col-xs-12 col-sm-8 mobi-mb-50" style="width: 100%;">
+						<div class="row courses">
+							<div class="col-xs-12 col-sm-6 mb-30">
+								<div class="blog-post blog-style2">
+									<div class="thumb text-center">
+										<a href="blog-details.html"><img src="assets/img/blog/6.jpg"
+												alt="Thumbnail Image" /></a>
+									</div>
+									<div class="blog-content">
+										<div class="rt-inner plr-35 pt-30 mb-20">
+
+											<a href="blog-details.html">
+												<h3 class="text-capitalize">Cơ sở dữ liệu</h3>
+											</a>
+											<h4 class="mb-5">20 Jun 2017</h4>
+											<p>Mô tả khóa học bla bla bla</p>
+										</div>
+										<div class="footer clearfix plr-35">
+											<div class="pull-left">
+												<h5><span>By:</span> Kuro</h5>
+											</div>
+											<div class="pull-right">
+												<h5><span>Rating:</span> 5/5</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.Post End -->
+
+						</div>
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="rt-pagination pt-60 text-center">
+									<ul class="clearfix" id='Pagination'>
+										<li class="active">
+											<a href="javascript:render('1')">01</a>
+										</li>
+										<li><a href="javascript:render('2')">02</a></li>
+										<li><a href="javascript:render('3')">03</a></li>
+										<li><a href="javascript:render('2')"><i class="zmdi zmdi-chevron-right"></i></a>
+										</li>
+									</ul>
+								</div>
+								<!-- /.Pagination -->
+							</div>
+						</div>
+						<!-- /.row -->
+					</div>
+
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- Manage Courses Section End -->
+
+		<!-- new Courses Section Start -->
+		<section class="blog-area section-padding white-bg" id="new-courses-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-7 col-text-center">
+						<div class="enter-box" id="order_div">
+							<h3 class="mb-35">Thông tin khóa học</h3>
+
+							<form class="custom-input" id="order-form" onsubmit="return insert_order();">
+
+								<h6 style="margin:5px 0 0 0;">Tên khóa học:</h6>
+								<input type="text" id="course_name" />
+
+								<h6 style="margin:5px 0 0 0;">Lớp:</h6>
+								<input type="number" id="course_grade"  />
+
+								<h6 style="margin:5px 0 0 0;">Số buổi:</h6>
+								<input type="number" id="course_class_num"  />
+
+
+								<h6 style="margin:5px 0 0 0;">Số HS:</h6>
+								<input type="number" id="course_min_student"  />
+
+								<h6 style="margin:5px 0 0 0;">Học phí:</h6>
+								<input type="number" id="fee"  />
+
+
+
+								<button class="btn-primary btn-edit" type="button" onclick="insert_course()"
+									style="padding: 10px;">
+									<h6 style=" margin:0; color: aliceblue; ">Thêm</h6>
+								</button>
+
+								<button class="btn" type="button" style="display: none;"
+									onclick="save_info()">Save</button>
+								<button class="btn" type="button"
+									style="margin-left: 10px; background-color: rgb(255, 170, 170); display: none;"
+									onclick="cancel_edit()">Cancel</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container -->
+		</section>
+		<!-- new Courses Section End -->
+
+		<!-- Profile Section Start -->
+		<section class="register-area section-padding white-bg" id="profile-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-7 col-text-center">
+						<div class="enter-box" id="order_div">
+							<h3 class="mb-35">Thông tin cá nhân</h3>
+
+							<form  class="custom-input" id="order-form">
+
+								<h6 style="margin:5px 0 0 0;">Name:</h6>
+								<input type="text" id="name" value="Trần Minh Sơn" disabled />
+								<h6 style="margin:5px 0 0 0;">Date of birth:</h6>
+								<input type="date" id="ntns" value="2005-05-17" disabled />
+								<h6 style="margin:5px 0 0 0;">Email:</h6>
+								<input type="email" id="email" disabled />
+
+								<h6 style="margin:5px 0 0 0;">Phone number:</h6>
+								<input type="text" id="sdt" disabled />
+
+
+								<button class="btn-primary btn-edit" type="button" onclick="enable_edit_info()"
+									style="padding: 10px;">
+									<h6 style=" margin:0; color: aliceblue; ">Chỉnh sửa thông tin</h6>
+								</button>
+
+								<button class="btn" type="button" style="display: none;"
+									onclick="save_info()">Save</button>
+								<button class="btn" type="button"
+									style="margin-left: 10px; background-color: rgb(255, 170, 170); display: none;"
+									onclick="cancel_edit()">Cancel</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Profile Section End -->
+
+		<!-- Become Teacher Section Start -->
+		<section class="register-area section-padding white-bg" id="become-teacher-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-7 col-text-center">
+						<div class="enter-box" id="order_div">
+							<h3 class="mb-35">Thêm bằng cấp</h3>
+
+							<form class="custom-input" id="order-form" >
+
+								<h6 style="margin:5px 0 0 0;">Certification Name:</h6>
+								<input type="text" id="cert_name"/>
+								<h6 style="margin:5px 0 0 0;">Certificate Date:</h6>
+								<input type="date" id="cert_recv_date"/>
+								<h6 style="margin:5px 0 0 0;">Certification Provider:</h6>
+								<input type="text" id="cert_provider"/>
+
+								<button class="btn-primary btn-edit" type="button" onclick="update_cert()"
+									style="padding: 10px;">
+									<h6 style=" margin:0; color: aliceblue; ">Thêm bằng</h6>
+								</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--  Become Teacher Section End -->
+
+		<!-- course info section Start -->
+		<section class="register-area section-padding white-bg" id="course-schedule-section">
+			<div class="container">
+				<div class="row">
+					<div class="" style="margin: 0 auto; width: auto;">
+						<div class="enter-box" style="padding: 87px;width: 1100px; margin: 0 auto;">
+							<h3 class="mb-35">Thông tin khóa học </h3>
+							<form class="custom-input">
+								<br>
+								<table class="table " id="driver-order-table">
+									<thead>
+										<tr>
+
+											<th scope="col" style="width: 300px;">
+												<h6 style="margin:5px 0 0 0;">Tên khóa học</h6>
+											</th>
+											<th scope="col" style="width: 100px;">
+												<h6 style="margin:5px 0 0 0;">Ngày học</h6>
+											</th>
+											<th scope="col" style="width: 300px;">
+												<h6 style="margin:5px 0 0 0;">Thời gian</h6>
+											</th>
+											<th scope="col" style="width: 100px;">
+												<h6 style="margin:5px 0 0 0;"></h6>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- course info section END -->
+
+
+		<!-- Footer Section Start -->
+        <footer class="section-pt bg-color-5">
+            <div class="footer-widget-area pb-100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-3 mobi-mb-50 tab-mb-50">
+                            <div class="footer-widget address">
+                                <div class="title mb-40">
+                                    <a href="index.html"><img src="assets/img/white-logo.png" alt="Cultura" /></a>
+                                </div>
+                                <ul>
+                                    <li class="mb-10"><span>Address:</span> 10 North 10 Street,
+                                        <br /> Office 120 Barinai UK 200
+                                    </li>
+                                    <li><span>Phone:</span> <a href="tel:+895245485565">+89 524 5485 565</a></li>
+                                    <li><span>Email:</span> <a href="mailto:cultura@email.com">cultura@email.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.Widget end -->
+                        <div class="col-xs-12 col-sm-6 col-md-3 mobi-mb-50 tab-mb-50">
+                            <div class="footer-widget links">
+                                <div class="title mb-40">
+                                    <h4 class="text-capitalize">Author <span class="theme-color">Links</span></h4>
+                                    <div class="horizontal-line">
+                                        <hr class="top">
+                                        <hr class="bottom">
+                                    </div>
+                                </div>
+                                <ul class="pull-left" style="width: 120%">
+                                    <li>
+                                        <h4 class="text-capitalize" style="font-weight: bold;">Nhập môn công nghệ phần mềm</h4>
+                                    </li>
+                                    <li>
+                                        <h4 class="text-capitalize">Dương Nam Hải</h4>
+                                    </li>
+                                    <li>
+                                        <h4 class="text-capitalize">Phạm Tân Tị</h4>
+                                    </li>
+                                    <li>
+                                        <h4 class="text-capitalize">Phạm Anh Khoa</h4>
+                                    </li>
+                                    <li>
+                                        <h4 class="text-capitalize">Lê Nam Thái Sơn</h4>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- /.Widget end -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.Widget Area End -->
+            <div class="divide">
+                <div class="container">
+                    <hr class="line" />
+                </div>
+            </div>
+            <!-- /.Divede Line -->
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="left">
+                                <p>Copyright &copy; 2018 <a href="https://themeforest.net/user/regaltheme/portfolio">Regaltheme</a>.</p>
+                            </div>
+                            <!-- Change your Copyright -->
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="social-icon text-right">
+                                <ul class="clearfix d-inblock">
+                                    <li><a href="https://www.facebook.com/regaltheme/" target="_blank"><i
+                                                class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/regaltheme" target="_blank"><i
+                                                class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a href="https://www.pinterest.com/regaltheme/" target="_blank"><i
+                                                class="zmdi zmdi-pinterest"></i></a></li>
+                                    <li><a href="http://www.instagram.com" target="_blank"><i
+                                                class="zmdi zmdi-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Change your social media link -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Section End -->
+	</div>
+	<!-- Wrapper Start -->
+
+	<!-- All JS Here -->
+	<!-- jQuery Latest Version -->
+	<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- Form Validate -->
+	<script src="assets/js/jquery.validate.min.js"></script>
+	<!-- Slick Slider JS -->
+	<script src="assets/js/slick.min.js"></script>
+	<!-- Swiper JS -->
+	<script src="assets/js/swiper.min.js"></script>
+	<!-- Isotope JS -->
+	<script src="assets/js/isotope.pkgd.min.js"></script>
+	<!-- Plugins JS -->
+	<script src="assets/js/plugins.js"></script>
+	<!-- Main JS -->
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
