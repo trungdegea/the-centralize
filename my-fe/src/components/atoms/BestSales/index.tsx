@@ -66,6 +66,11 @@ export const HeartOutlinedStyled = styled(HeartOutlined)`
       }
     }
   }
+  &:focus {
+    path {
+      fill: #b71eb7;
+    }
+  }
 `;
 export default function BestSales() {
   const [listSales, setListSales] = useState<any[]>([]);

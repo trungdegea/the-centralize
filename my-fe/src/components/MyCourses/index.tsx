@@ -6,25 +6,38 @@ import { getListMyCourses } from "../../services/user.service";
 import { CardStyled } from "../atoms/AllCourses";
 import { ButtonStyled } from "../atoms/CourseInfo";
 import { EyeOutlinedStyled } from "../Favorite";
+import StudyCourseModal from "../Modal/studyCourse";
 const { Meta } = Card;
 
 export default function MyCourses() {
   const [list, setList] = useState<any[]>([]);
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState("");
   useEffect(() => {
     void (async () => {
       const res: any = await getListMyCourses();
       setList(res);
     })();
   }, []);
+
+  const handleStudy = (MaKH: string) => {
+    setVisible(true);
+    setCurrentCourse(MaKH);
+  };
   return (
     <div>
       <Row>
+        <StudyCourseModal
+          visible={visible}
+          onCancel={() => setVisible(false)}
+          currentCourse={currentCourse}
+        />
         {list.map((item, idx) => (
           <Col sm={12} xl={6}>
             <CardStyled
               style={{ width: 300 }}
-              onClick={() => navigate(`/courses/${item?.MaKH}`)}
+              // onClick={() => navigate(`/courses/${item?.MaKH}`)}
               cover={
                 <img
                   alt="example"
@@ -37,7 +50,9 @@ export default function MyCourses() {
                 />
               }
               actions={[
-                <ButtonStyled>Buy</ButtonStyled>,
+                <ButtonStyled onClick={() => handleStudy(item.MaKH)}>
+                  Study
+                </ButtonStyled>,
                 <EyeOutlinedStyled
                   style={{
                     width: "100%",
@@ -47,18 +62,6 @@ export default function MyCourses() {
                     alignItems: "center",
                   }}
                 />,
-
-                // <CheckOutlined
-                //   onClick={() => favorCourseAsync(item?.MaKH)}
-                //   style={{
-                //     width: "100%",
-                //     height: "32px",
-                //     display: "flex",
-                //     justifyContent: "Center",
-                //     alignItems: "center",
-                //   }}
-                // />,
-                // <EditOutlined key="edit" />,
               ]}
             >
               <Meta

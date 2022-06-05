@@ -172,7 +172,7 @@ app.post("/become-teacher", function (req, res) {
         .input("NgayCapBang", sql.Date, `${req.body.cert_recv_date}`)
         .input("NoiCapBang", sql.NVARCHAR(50), `${req.body.cert_provider}`)
         //.output('MaGV',sql.VARCHAR(10))
-        .execute("sp_TK_DangKyGV");
+        .execute("sp_TK_CapNhatBC");
       pool.close();
       res.redirect("/");
       //console.log(result)
@@ -460,6 +460,26 @@ app.post("/course-detail", function (req, res) {
 
 app.post("/add-detail", function (req, res) {
   const qry = `INSERT INTO ChiTietKH values('${req.body.MaKH}',0,'abc','${req.body.Mota}','${req.body.LinkVideo}')`;
+  Promise.resolve("success").then(async function () {
+    try {
+      let pool = await sql.connect(config);
+      let result = await pool.request().query(qry);
+      pool.close();
+      res.send(result.recordset);
+      return;
+    } catch (error) {
+      console.log(error.message);
+      return error.message;
+    }
+  });
+});
+
+app.post("/update-course", function (req, res) {
+  const qry = `UPDATE khoahoc set TenKhoaHoc='${req.body.TenKhoaHoc}', 
+              HocPhi='${req.body.HocPhi}', 
+              SoBuoiDuKien='${req.body.SoBuoiDuKien}', 
+              Link='${req.body.Link}' 
+              WHERE MaKH ='${req.body.MaKH}'`;
   Promise.resolve("success").then(async function () {
     try {
       let pool = await sql.connect(config);

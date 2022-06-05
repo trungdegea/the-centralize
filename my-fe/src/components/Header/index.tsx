@@ -40,6 +40,7 @@ export const InputStyled = styled(Input)`
 export default function Header() {
   const { maTk, setMaTk, teacher } = useContext(UserContext);
   const [visible, setVisible] = useState(false);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   console.log(maTk);
   const becomeTeacher = async () => {
@@ -47,7 +48,11 @@ export default function Header() {
       const res = await teacherGetGo();
       console.log(res);
       toast.success("Great! You are a teacher now!");
+      setVisible(false);
     } catch (error) {}
+  };
+  const handleSearch = () => {
+    navigate(`/courses/search/${search}`);
   };
   const handleNavigate = (key: string) => {
     switch (key) {
@@ -98,6 +103,8 @@ export default function Header() {
           {
             label: (
               <InputStyled
+                onChange={(e) => setSearch(e.target.value)}
+                onPressEnter={handleSearch}
                 addonBefore={<SearchOutlined />}
                 placeholder="search course"
               />
@@ -134,6 +141,8 @@ export default function Header() {
           {
             label: (
               <InputStyled
+                onChange={(e) => setSearch(e.target.value)}
+                onPressEnter={handleSearch}
                 addonBefore={<SearchOutlined />}
                 placeholder="search course"
               />
@@ -171,6 +180,8 @@ export default function Header() {
         {
           label: (
             <InputStyled
+              onChange={(e) => setSearch(e.target.value)}
+              onPressEnter={handleSearch}
               addonBefore={<SearchOutlined />}
               placeholder="search course"
             />
@@ -178,7 +189,6 @@ export default function Header() {
           key: "item-5",
         },
         { label: "HOME", key: "item-1" },
-        { label: "BECOME A TEACHER", key: "item-2" },
         { label: "LOGIN", key: "item-3" },
         { label: "REGISTER", key: "item-4" },
       ];

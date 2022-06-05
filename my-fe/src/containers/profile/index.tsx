@@ -122,7 +122,11 @@ export default function ProfileContainer() {
             <Input placeholder="30/03/2000" />
           </div>
           <div style={{ width: 400, marginBottom: 10 }}>
-            <ButtonStyled>Update</ButtonStyled>
+            <ButtonStyled
+              onClick={() => toast.success("Update profile successfully")}
+            >
+              Update
+            </ButtonStyled>
           </div>
           {teacher && (
             <div style={{ width: 400 }}>

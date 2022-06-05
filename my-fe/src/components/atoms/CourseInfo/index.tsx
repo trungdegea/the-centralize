@@ -110,8 +110,11 @@ export default function CourseInfo() {
       const res = await joinCourse({ MaKH: String(id) });
       if (res) {
         toast.success("Buy Course Successfully");
+        setVisible(false);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.warning("ERROR");
+    }
   };
   return (
     <div style={{}}>

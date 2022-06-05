@@ -12,11 +12,19 @@ export interface ICourse {
   fee: string;
   Link: string;
 }
-
+export interface IAddDetailCourse {
+  MaKH: string;
+  Mota: string;
+  LinkVideo: string;
+}
 export const getCourseDetail = async (data: ICourseDetail) => {
   return await Api.post("/course-detail", data);
 };
 
 export const insertCourse = async (data: ICourse) => {
   return await Api.post("/insert-course", data);
+};
+
+export const AddDetailCourse = async (data: IAddDetailCourse) => {
+  return await Api.post("/add-detail", data);
 };
